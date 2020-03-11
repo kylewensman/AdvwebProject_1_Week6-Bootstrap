@@ -1,17 +1,104 @@
+// ******************************************** Sass Examples ***********************************************
+// 1. variables
+// setting color theme
+$primary: rgb(32, 160, 177);
+$accent: #006064;
+$neutral: #ecf0f1;
+
+// applying colors
+.jumbotron{
+  background-color: $accent !important;
+  color: white;
+}
+body{
+  background-color: $neutral !important;
+}
+
+// 2. Nesting selectors
+// styling the navigation border and colors
+nav{
+  border-bottom: 3px solid rgb(219, 219, 219);
+  background-color: $primary !important;
+  ul a{
+    color: $neutral !important;
+    &:hover{
+      font-weight: bold !important;
+    }
+  }
+}
+// styling the nav dropdown
+.dropdown-menu{
+  background-color: $primary;
+  a:hover{
+    background-color: $accent;
+  }
+}
+// 3. Nesting properties
+// adding padding to dropdown item and centering text
+.dropdown-item{
+  padding: {
+    left: 10px;
+    right: 10px;
+    bottom: 5px;
+    top: 5px;
+  }
+  text-align: center;
+}
+// 4. Nested media query
+// changing colors of card title
+h5{
+  color: black;
+  @media (max-width: 700px){
+    color: $accent;
+  }
+}
+// 5. Use the @extend to pass all CSS styles from one selector to another
+// adds border to section under jumbotron
+#anImportantHeading{
+  border: 1px solid $accent;
+}
+// applys same border to cards
+.card{
+  @extend #anImportantHeading;
+}
+// 6. Use a mixin with @include to write a reusable chuck of code
+// chages the 3rd card font and color
+@mixin mixinDemo() {
+  color: $accent;
+  font-size: 1.2em;
+}
+#card3{
+  @include mixinDemo();
+}
+// 7/8. Sass function / math
+  // generates random number and passes in min and max
+@function randomNum($min, $max) {
+  $randomNum: ($min + floor(random() * (($max - $min) + 1)) + px);
+  @return $randomNum;
+}
+// random padding - because why not
+h1{
+  padding-top: randomNum(1, 100);
+}
+
+// ******************************************** Original CSS ************************************************
 // Bootstrap Sass Imports
 // allows you to use bootsrap variables
-@import "node_modules/bootstrap/scss/bootstrap";
-
+// @import "node_modules/bootstrap/scss/bootstrap";
 // overrides theme color variable
-$theme-colors: (
-  "primary": #d95700
-);
-//overrides body background color
-$body-bg: #ededed;
+// $theme-colors: (
+//   "primary": #d95700
+// );
+////overrides body background color
+// $body-bg: #ededed;
 
-.jumbotron {
-    // changes background color based on element
-    background-color: #ffffff !important;
-    // adds a subtle border
-    border-top: 3px solid rgb(219, 219, 219);
-}
+// .jumbotron {
+    //// changes background color based on element
+    // background-color: #ffffff !important;
+    //// adds a subtle border
+    //// border-top: 3px solid rgb(219, 219, 219);
+    
+//}
+// nav{
+//   border-bottom: 3px solid rgb(219, 219, 219);
+// }
